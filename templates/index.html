@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dados dos Arquivos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h5>Dados dos Arquivos</h5>
+    {% if error %}
+    <p>{{ error }}</p>
+    {% endif %}
+    {% if errors %}
+    <div>
+        <p>Erros:</p>
+        <ul>
+            {% for error in errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    {% if files_data %}
+    <table>
+        <thead>
+            <tr>
+                <th>Entidade</th>
+                <th>Referência</th>
+                <th>Contrato</th>
+                <th>Transação</th>
+                <th>Valor</th>
+                <th>Data</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in files_data %}
+            <tr>
+                <td>{{ item.Entidade }}</td>
+                <td>{{ item.Referência }}</td>
+                <td>{{ item.Contrato }}</td>
+                <td>{{ item.Transação }}</td>
+                <td>{{ item.Valor | currency }}</td>
+                <td>{{ item.Data | date }}</td>
+                <td>{{ item.Estado }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+</body>
+</html>
